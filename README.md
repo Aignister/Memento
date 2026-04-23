@@ -2,13 +2,13 @@
 
 Su objetivo principal es capturar y externalizar el estado interno de un objeto en un momento determinado, de manera que dicho estado pueda ser restaurado posteriormente sin violar los principios de encapsulamiento. Para lograrlo, el patrón define tres participantes clave: el **Originador**, que es el objeto cuyo estado se desea preservar; el **Memento**, que almacena una instantánea de ese estado; y el **Cuidador**, responsable de custodiar y administrar los mementos sin acceder a su contenido interno.
 
-Este patrón encuentra aplicación en múltiples escenarios del mundo real, como editores de texto con funcionalidad de deshacer/rehacer, sistemas de control de versiones, simuladores de estados y videojuegos con puntos de guardado. Su relevancia radica en que permite implementar estas funcionalidades de forma ordenada, sin exponer los detalles internos del objeto ni generar acoplamiento innecesario entre sus componentes.
+Este patrón encuentra aplicación en múltiples como editores de texto con funcionalidad de deshacer/rehacer, sistemas de control de versiones, simuladores de estados y videojuegos con puntos de guardado. De este modo, es posible implementar dichas funcionalidades manteniendo el código organizado, protegiendo la estructura interna del objeto y evitando dependencias innecesarias entre los distintos componentes del sistema.
 
 ## Conclusión
 
-El patrón de diseño Memento demuestra ser una herramienta poderosa cuando se necesita preservar y restaurar el estado de un objeto de forma controlada y segura. A través de la separación clara de responsabilidades entre el **Originador**, el **Memento** y el **Cuidador**, se logra una solución que respeta el principio de encapsulamiento y mantiene la coherencia del sistema sin exponer la lógica interna de los objetos involucrados.
+El patrón Memento resulta útil en situaciones donde se necesita guardar y recuperar el estado de un objeto sin comprometer su encapsulamiento. Gracias a la división de responsabilidades entre el **Originador**, el **Memento** y el **Cuidador**, el sistema puede mantener un historial de estados de manera ordenada, sin que los demás componentes necesiten conocer los detalles internos del objeto.
 
-Su implementación aporta beneficios significativos en términos de mantenibilidad y extensibilidad del código, ya que centraliza la gestión del historial de estados en una estructura bien definida. Sin embargo, como todo patrón, no está exento de consideraciones: el almacenamiento de múltiples instantáneas puede representar un consumo elevado de memoria si el estado del objeto es voluminoso o si la frecuencia de captura es alta, por lo que su uso debe evaluarse con criterio según las necesidades del sistema.
+Su aplicación tiene un costo: guardar múltiples instantáneas del estado puede volverse costoso en términos de memoria, sobre todo cuando el objeto maneja una gran cantidad de datos o cuando los cambios ocurren con mucha frecuencia. Por ello, antes de implementarlo conviene analizar si las necesidades del sistema justifican ese consumo adicional de recursos.
 
 ## Referencias
 
