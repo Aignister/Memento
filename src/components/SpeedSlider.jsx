@@ -46,7 +46,7 @@ export function SpeedSlider({ enabled, disabled, speedValue, onToggle, onSpeedCh
           >
             <span
               className={`
-                absolute top-1 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200
+                absolute top-1 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform duration-200
                 ${enabled? "translate-x-6" : "translate-x-1"}
               `}
             />
