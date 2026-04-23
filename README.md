@@ -1,7 +1,5 @@
 ## Introducción
 
-En el desarrollo de software, uno de los desafíos más comunes es gestionar el estado interno de los objetos a lo largo del tiempo, especialmente cuando se requiere la capacidad de deshacer acciones o restaurar configuraciones previas. Para abordar esta problemática, los patrones de diseño ofrecen soluciones probadas y reutilizables que facilitan la construcción de sistemas flexibles y mantenibles.
-
 Su objetivo principal es capturar y externalizar el estado interno de un objeto en un momento determinado, de manera que dicho estado pueda ser restaurado posteriormente sin violar los principios de encapsulamiento. Para lograrlo, el patrón define tres participantes clave: el **Originador**, que es el objeto cuyo estado se desea preservar; el **Memento**, que almacena una instantánea de ese estado; y el **Cuidador**, responsable de custodiar y administrar los mementos sin acceder a su contenido interno.
 
 Este patrón encuentra aplicación en múltiples escenarios del mundo real, como editores de texto con funcionalidad de deshacer/rehacer, sistemas de control de versiones, simuladores de estados y videojuegos con puntos de guardado. Su relevancia radica en que permite implementar estas funcionalidades de forma ordenada, sin exponer los detalles internos del objeto ni generar acoplamiento innecesario entre sus componentes.
