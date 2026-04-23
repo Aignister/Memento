@@ -3,6 +3,7 @@ import { SquareStack, DoorOpen, ShieldAlert, Save, Trash2, } from "lucide-react"
 
 import Carro from "../images/Carro.png";
 import { useUsers } from "../hooks/useUsers";
+import { useToggleSound } from "../hooks/useToggleSound";
 import { USER_COLORS } from "../data/users";
 import { MasterToggle } from "../components/MasterToggle";
 import { LockControlCard } from "../components/LockControlCard";
@@ -10,14 +11,12 @@ import { SpeedSlider } from "../components/SpeedSlider";
 import { HistoryPanel } from "../components/HistoryPanel";
 import { UserSelector } from "../components/UserSelector";
 
-// Controles de bloqueo
 const LOCK_CONTROLS = [
   { key: "windows", title: "Ventanas bloqueadas", icon: SquareStack },
   { key: "doors", title: "Puertas bloqueadas", icon: DoorOpen    },
   { key: "seatbelt", title: "Cinturón obligatorio", icon: ShieldAlert },
 ];
 
-// Toast
 function useToast() {
   const [message, setMessage] = useState(null);
   const show = useCallback((msg) => {
@@ -27,7 +26,6 @@ function useToast() {
   return { message, show };
 }
 
-// Pagina Principal
 export function SafetyDashboard() {
   const {
     users, activeUser, activeUserId, selectUser,
@@ -37,10 +35,24 @@ export function SafetyDashboard() {
   } = useUsers();
 
   const { message: toast, show: showToast } = useToast();
+  const { playMaster, playControl } = useToggleSound();
 
   const colors = USER_COLORS[activeUser.color];
 
-  // Handlers
+  // Wrappers con audio
+  const handleToggleMaster = useCallback(() => {
+    playMaster(!state.masterOn);
+    toggleMaster();
+  }, [state.masterOn, toggleMaster, playMaster]);
+
+  const handleToggleControl = useCallback(
+    (key) => {
+      playControl(key, !state[key]);
+      toggleControl(key);
+    },
+    [state, toggleControl, playControl]
+  );
+
   const handleSave = useCallback(() => {
     saveSnapshot();
     showToast(`Configuración de ${activeUser.name} guardada`);
@@ -89,13 +101,12 @@ export function SafetyDashboard() {
           <aside className="flex flex-col gap-4 lg:sticky lg:top-18">
             <section className="bg-white border border-gray-100 rounded-2xl p-4">
               <p className="text-[11px] font-medium uppercase tracking-widest text-gray-300 mb-3">
-                Vehiculo
+                Vehículo
               </p>
-              {/* Placeholder para vehiculo.png */}
               <div className="w-full flex items-center justify-center rounded-xl overflow-hidden bg-gray-50 border border-dashed border-gray-200" style={{ minHeight: 120 }}>
                 <img
                   src={Carro}
-                  alt="Vehiculo"
+                  alt="Vehículo"
                   className="w-full object-contain"
                 />
               </div>
@@ -118,7 +129,7 @@ export function SafetyDashboard() {
               <p className="text-[11px] font-medium uppercase tracking-widest text-gray-300 mb-3">
                 Control principal · {activeUser.name}
               </p>
-              <MasterToggle masterOn={state.masterOn} onToggle={toggleMaster} />
+              <MasterToggle masterOn={state.masterOn} onToggle={handleToggleMaster} />
             </section>
             <section className="bg-white border border-gray-100 rounded-2xl p-5">
               <p className="text-[11px] font-medium uppercase tracking-widest text-gray-300 mb-3">
@@ -132,7 +143,7 @@ export function SafetyDashboard() {
                     title={title}
                     enabled={state[key]}
                     disabled={!state.masterOn}
-                    onToggle={() => toggleControl(key)}
+                    onToggle={() => handleToggleControl(key)}
                   />
                 ))}
               </div>
@@ -145,7 +156,7 @@ export function SafetyDashboard() {
                 enabled={state.speed}
                 disabled={!state.masterOn}
                 speedValue={state.speedValue}
-                onToggle={() => toggleControl("speed")}
+                onToggle={() => handleToggleControl("speed")}
                 onSpeedChange={setSpeedValue}
               />
             </section>
