@@ -1,6 +1,6 @@
 ## Introducción
 
-El objetivo principal es capturar y externalizar el estado interno de un objeto en un momento determinado, de manera que dicho estado pueda ser restaurado posteriormente sin violar los principios de encapsulamiento. Para lograrlo, el patrón define tres caracterisitcas: el **Originador**, que es el objeto cuyo estado se desea preservar; el **Memento**, que almacena una instantánea de ese estado y el **Cuidador**, responsable de custodiar y administrar los mementos sin acceder a su contenido interno.
+El objetivo principal busca guardar una copia del estado de un objeto en un momento específico para poder recuperarlo más adelante, sin romper el encapsulamiento propio del objeto. Para lograrlo, el patrón define tres caracterisitcas: el **Originador**, que es el objeto cuyo estado se desea preservar; el **Memento**, que almacena una instantánea de ese estado y el **Cuidador**, responsable de custodiar y administrar los mementos sin acceder a su contenido interno.
 
 Este patrón se encuentra aplicado en múltiples editores de texto con funcionalidad de deshacer/rehacer, sistemas de control de versiones, simuladores de estados y videojuegos con puntos de guardado. De este modo, es posible implementar dichas funcionalidades manteniendo el código organizado, protegiendo la estructura interna del objeto y evitando dependencias innecesarias entre los distintos componentes del sistema.
 
