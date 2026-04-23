@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { SquareStack, DoorOpen, ShieldAlert, Save, Trash2, } from "lucide-react";
 
+import Carro from "../images/Carro.png";
 import { useUsers } from "../hooks/useUsers";
 import { USER_COLORS } from "../data/users";
 import { MasterToggle } from "../components/MasterToggle";
@@ -88,18 +89,14 @@ export function SafetyDashboard() {
           <aside className="flex flex-col gap-4 lg:sticky lg:top-18">
             <section className="bg-white border border-gray-100 rounded-2xl p-4">
               <p className="text-[11px] font-medium uppercase tracking-widest text-gray-300 mb-3">
-                Vehículo
+                Vehiculo
               </p>
               {/* Placeholder para vehiculo.png */}
               <div className="w-full flex items-center justify-center rounded-xl overflow-hidden bg-gray-50 border border-dashed border-gray-200" style={{ minHeight: 120 }}>
                 <img
-                  src="../images/Carro.png"
-                  alt="Vehículo"
+                  src={Carro}
+                  alt="Vehiculo"
                   className="w-full object-contain"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "flex";
-                  }}
                 />
               </div>
             </section>
