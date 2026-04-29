@@ -1,3 +1,12 @@
+## Integrantes
+- Luis Enrique Torres Murillo
+- Kevin Omar Alvarez Hernandez
+- Jose Angel Mojica Fajardo
+- Gonzalo Cortez Huerta
+
+
+
+
 ## Introducción
 
 El objetivo principal busca guardar una copia del estado de un objeto en un momento específico para poder recuperarlo más adelante, sin romper el encapsulamiento propio del objeto. Para lograrlo, el patrón define tres caracterisitcas: el **Originador**, que es el objeto cuyo estado se desea preservar; el **Memento**, que almacena una instantánea de ese estado y el **Cuidador**, responsable de custodiar y administrar los mementos sin acceder a su contenido interno.
